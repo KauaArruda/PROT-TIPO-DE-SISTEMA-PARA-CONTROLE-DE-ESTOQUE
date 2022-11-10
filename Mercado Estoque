@@ -1,0 +1,54 @@
+import random
+
+print('\t\tMERCADO LIVRE!\n')
+
+produtos = ['1 - Celular', '2 - Notebook', '3 - Tablet', '4 - Fone de Ouvido', '5 - Caixa de Som', '6 - Câmera Fotográfica', '7 - Geladeira', '8 - Sofá',
+            '9 - Fogão', '10 - Jogo de Panelas', '11 - Armário', '12 - Mesa', '13 - Cadeiras', '14 - Cama', '15 - Jogo de Lençóis']
+
+
+mercadorias_disponiveis = []
+opt = 0
+compra = 0
+
+
+def linha ():
+    print('='*30)
+
+
+for i in range(0, len(produtos)):
+    mercadorias_disponiveis.append(random.randint(0, 3))
+
+
+while True:
+    linha()
+    print('''    [1] - VERIFICAR
+    [2] - REALIZAR COMPRA
+    [3] - SAIR''')
+    linha()
+
+
+    opt = int(input('\nDigite o número correspondente as seguintes opções que desejar: \n'))
+
+    cont=0
+    if opt == 1:
+        linha()
+        print('\nA seguir temos os seguintes produtos disponíveis com as mercadorias, respectivamente: \n')
+        linha()
+        while cont < len(produtos):
+            print(produtos[cont], ': Mercadorias Disponíveis: ', mercadorias_disponiveis[cont])
+            cont+=1
+            linha()
+    elif opt == 2:
+        compra = int(input('\nInforme o número do produto correspondente desejado: \n'))
+
+        if compra > len(produtos) or compra < 1:
+            print(f'\nProduto Sem Estoque, Por favor Escolha um Produto Existente!!!\n')
+
+        elif mercadorias_disponiveis[compra-1] < 1:
+            print(f'\nSua Escolha do(a) {produtos[compra-1]} está Indisponível no Momento!!!\n')
+
+        else:
+            print(f'\nSua Compra do(a) {produtos[compra-1]} foi Realizada com Sucesso!!!\n')
+            mercadorias_disponiveis[compra-1] -= 1
+    if opt == 3:
+        break
